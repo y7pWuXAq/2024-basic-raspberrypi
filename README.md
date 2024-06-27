@@ -69,11 +69,30 @@ IoT 개발자 과정 라즈베리파이 학습 리포지토리
 
 ### DAY 02
 
-- 파이썬 가상환경 생성 : python -m venv (--system-site-packages) env
+- 파이썬 가상환경 생성 
+
+    ```
+        python -m venv (--system-site-packages) env
+    ```
     - --system-site-packages : 라이브러리 포함하는 옵션
-- 가상환경 접속 : source ./env/bin/activate 
-- 가상환경 종료 : deactivate
-- 가상환경에 라즈베리파이 설치 : sudo pip install RPi.GPIO
+
+- 가상환경 접속
+
+    ```
+        source ./env/bin/activate
+    ```
+    
+- 가상환경 종료
+
+    ```
+        deactivate
+    ```
+
+- 가상환경에 라즈베리파이 설치
+
+    ```
+        sudo pip install RPi.GPIO
+    ```
     
     - 라즈베리파이 핀의 전류 상태 확인
     - sudo git clone https://github.com/WiringPi/WiringPi
@@ -120,7 +139,7 @@ IoT 개발자 과정 라즈베리파이 학습 리포지토리
     - ex22_cam01.py
 
     ```python
-    from picamera2 import Picamera2, Preview
+    from picamera2 import Picamera2, Preview # picamera2 라이브러리의 Picamera2 클래스
     import time
 
     picam2 = Picamera2()
@@ -135,4 +154,86 @@ IoT 개발자 과정 라즈베리파이 학습 리포지토리
     - ex23_cam02.py
 
 - FND 4Digit 7Segment 표시하기
-    - ex24_4Digit_7Segment.py
+    - ex24_7Segment01.py
+
+
+
+### DAY 05
+
+- 버튼 클릭마다 7Segment 숫자 1씩 증가
+    - ex25_7Segment02.py
+
+- 7Segment LED에 1234 띄우기
+    - ex26_7Segment03.py
+
+- 7Segment 카운트 1부터 9999까지
+    - ex27_7Segment04.py
+
+
+
+### DAY 06
+
+- Day05 7Segment 복습
+    - ex28_fnd01.py
+    - ex29_fnd02.py
+    - ex30_fnd03.py
+    - ex31_fnd04.py
+
+- VNC에 PyQt5 설치
+    ```
+    sudo apt install qttools5-dev-tools
+    ```
+
+- 기본 코드 형식
+    - ex32_PyQt01.py
+
+        ```python
+        import sys
+        from PyQt5.QtWidgets import *
+        from PyQt5 import uic
+
+        form_class = uic.loadUiType("./test01.ui")[0]
+
+        # WindowClass
+        class WindowClass(QMainWindow, form_class):
+            def __init__(self):	# 생성자, 첫번째 인자는 self
+                super().__init()__()	# 부모클래스 생성자 (QWidget)
+                self.setupUi(self)
+
+        if __name__ == "__main__" :
+            app = QApplication(sys.argv) # 프로그램 실행시키는 클래스
+            myWindow = WindowClass() # WindowClass() 인스턴스 생성
+            myWindow.show() # 화면 보여주기
+            app.exec_() # 프로그램 실행
+        ```
+
+- PyQt5 이벤트 함수 등록
+    - ex33_PyQt02.py
+
+        ```python
+        class WindowClass(QMainWindow, form_class) :
+            def __init__(self) :
+                super().__init__()
+                self.setupUi(self)
+
+                # 이벤트 함수 등록
+                self.Btn_1.clicked.connect(self.btn1Function)
+                self.Btn_2.clicked.connect(self.btn2Function)
+                self.Btn_exit.clicked.connect(self.exitFunction)
+
+            def btn1Function(self) :
+                print("LED ON BUTTON CLICK!")
+            def btn2Function(self) :
+                print("LED OFF BUTTON CLICK!")
+            def exitFunction(self) :
+                print("EXIT!")
+        ```
+
+- PyQt5 다이얼 이벤트
+    - ex34_PyQt03.py
+
+
+
+### DAY 07
+
+- 7일차 마무리 테스트
