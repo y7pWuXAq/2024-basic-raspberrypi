@@ -2,6 +2,7 @@ import RPi.GPIO as GPIO
 import sys
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
+import time
 
 form_class = uic.loadUiType("./test01.ui")[0]
 
@@ -18,6 +19,7 @@ class WindowClass(QMainWindow, form_class) :
 		# 버튼 클릭 이벤트 연결
 		self.Btn_ON.clicked.connect(self.btnOnFunction)
 		self.Btn_OFF.clicked.connect(self.btnOffFunction)
+		self.Btn_Quit.clicked.connect(self.btnQuitFunction)
 
 		self.Btn_RED.clicked.connect(self.btnRedFunction)
 		self.Btn_BLUE.clicked.connect(self.btnBlueFunction)
@@ -32,14 +34,25 @@ class WindowClass(QMainWindow, form_class) :
 
 	# 버튼 이벤트 함수
 	def btnOnFunction(self) :
+		GPIO.output(LED_RED, False)
+		GPIO.output(LED_BLUE, False)
+		GPIO.output(LED_GREEN, False)
+		time.sleep(1)
+		GPIO.output(LED_RED, True)
+		GPIO.output(LED_BLUE, True)
+		GPIO.output(LED_GREEN, True)
 		print("LED ON CLICK!!")
 
 	def btnOffFunction(self) :
 		GPIO.output(LED_RED, True)
 		GPIO.output(LED_BLUE, True)
 		GPIO.output(LED_GREEN, True)
-		GPIO.cleanup()
 		print("LED OFF CLICK!!")
+
+	def btnQuitFunction(self) :
+		GPIO.cleanup()
+		print("Quit CLICK!!")
+		QApplication.instance().quit()
 
 	def btnRedFunction(self) :
 		GPIO.output(LED_RED, False)

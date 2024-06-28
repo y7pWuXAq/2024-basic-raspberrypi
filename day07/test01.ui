@@ -17,7 +17,7 @@
    <widget class="QPushButton" name="Btn_ON">
     <property name="geometry">
      <rect>
-      <x>110</x>
+      <x>60</x>
       <y>230</y>
       <width>80</width>
       <height>30</height>
@@ -30,14 +30,14 @@
    <widget class="QPushButton" name="Btn_OFF">
     <property name="geometry">
      <rect>
-      <x>250</x>
+      <x>180</x>
       <y>230</y>
       <width>80</width>
       <height>30</height>
      </rect>
     </property>
     <property name="text">
-     <string>RESET</string>
+     <string>LED OFF</string>
     </property>
    </widget>
    <widget class="QPushButton" name="Btn_RED">
@@ -90,6 +90,19 @@
     </property>
     <property name="text">
      <string>WHITE</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Btn_Quit">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>230</y>
+      <width>80</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Quit</string>
     </property>
    </widget>
   </widget>
